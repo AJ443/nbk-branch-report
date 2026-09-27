@@ -59,7 +59,7 @@ def main():
 
     print("NBK BRANCH DAILY REPORT - HEAD OFFICE")
 
-    print("=== NBK DAILY WITHDRAWAL REPORT ===")
+
 
     print("Withdrawals at or above " + format_kwd(FLAG_THRESHOLD_KWD))
     print("")
