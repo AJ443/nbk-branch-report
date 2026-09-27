@@ -31,17 +31,11 @@ def format_kwd(amount):
 
 
 def flag_large_withdrawals(withdrawals, threshold=FLAG_THRESHOLD_KWD):
-    """Return only the withdrawals at or above the threshold.
-
-    withdrawals is a list of dictionaries. Each one needs an "amount_kwd" key.
-    This function does not touch the database, which is what makes it testable.
-    """
     flagged = []
     for w in withdrawals:
-        if w["amount_kwd"] > threshold:
+        if w["amount_kwd"] >= threshold:
             flagged.append(w)
     return flagged
-
 
 def fetch_withdrawals(db_path=DB_PATH):
     """Read every withdrawal out of the database as a list of dictionaries."""
