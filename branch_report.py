@@ -8,7 +8,7 @@ All data in this file is fictional and generated for training.
 import sqlite3
 
 DB_PATH = "nbk_demo.db"
-FLAG_THRESHOLD_KWD = 10000
+FLAG_THRESHOLD_KWD = 15000
 
 QUERY = """
 SELECT t.txn_id,
@@ -31,17 +31,11 @@ def format_kwd(amount):
 
 
 def flag_large_withdrawals(withdrawals, threshold=FLAG_THRESHOLD_KWD):
-    """Return only the withdrawals at or above the threshold.
-
-    withdrawals is a list of dictionaries. Each one needs an "amount_kwd" key.
-    This function does not touch the database, which is what makes it testable.
-    """
     flagged = []
     for w in withdrawals:
-        if w["amount_kwd"] > threshold:
+        if w["amount_kwd"] >= threshold:
             flagged.append(w)
     return flagged
-
 
 def fetch_withdrawals(db_path=DB_PATH):
     """Read every withdrawal out of the database as a list of dictionaries."""
@@ -56,7 +50,11 @@ def main():
     withdrawals = fetch_withdrawals()
     flagged = flag_large_withdrawals(withdrawals)
 
-    print("NBK BRANCH DAILY REPORT")
+
+        print("=== NBK DAILY WITHDRAWAL REPORT ===")
+
+
+
     print("Withdrawals at or above " + format_kwd(FLAG_THRESHOLD_KWD))
     print("")
 
