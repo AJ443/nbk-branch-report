@@ -8,7 +8,7 @@ All data in this file is fictional and generated for training.
 import sqlite3
 
 DB_PATH = "nbk_demo.db"
-FLAG_THRESHOLD_KWD = 12000
+FLAG_THRESHOLD_KWD = 15000
 
 QUERY = """
 SELECT t.txn_id,
@@ -57,7 +57,7 @@ def main():
     flagged = flag_large_withdrawals(withdrawals)
 
 
-      print("NBK BRANCH DAILY REPORT - HEAD OFFICE")
+        print("=== NBK DAILY WITHDRAWAL REPORT ===")
 
 
 
